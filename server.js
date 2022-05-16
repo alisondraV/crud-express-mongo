@@ -7,17 +7,17 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
-MongoClient.connect(process.env.MONGODB_CONNECTION)
-    .then(client => {
+async function taco () {
+    try {
+        const client = await MongoClient.connect(process.env.MONGODB_CONNECTION)
         console.log('Connected to Database')
+
         const db = client.db('starwars')
         const quotesCollection = db.collection('quotes')
 
         app.use(bodyParser.urlencoded({ extended: true }))
 
-        app.listen(3000, function() {
-            console.log('listening on 3000')
-        })
+        app.listen(3000, () => console.log('listening on 3000'))
 
         app.get('/', (req, res) => {
             quotesCollection.find().toArray()
@@ -65,5 +65,9 @@ MongoClient.connect(process.env.MONGODB_CONNECTION)
             }).catch(error => console.error(error))
 
         })
-    })
-    .catch(error => console.error(error))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+taco()

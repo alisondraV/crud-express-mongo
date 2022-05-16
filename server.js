@@ -4,6 +4,8 @@ const bodyParser= require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 const app = express()
 app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
 MongoClient.connect(process.env.MONGODB_CONNECTION)
     .then(client => {
@@ -18,7 +20,7 @@ MongoClient.connect(process.env.MONGODB_CONNECTION)
         })
 
         app.get('/', (req, res) => {
-            db.collection('quotes').find().toArray()
+            quotesCollection.find().toArray()
                 .then(results => {
                     res.render('index.ejs', { quotes: results })
                 })
@@ -32,6 +34,24 @@ MongoClient.connect(process.env.MONGODB_CONNECTION)
                     res.redirect('/')
                 })
                 .catch(error => console.error(error))
+        })
+
+        app.put('/quotes', (req, res) => {
+            quotesCollection.findOneAndUpdate(
+                { name: 'Yoda' },
+                {
+                    $set: {
+                        name: req.body.name,
+                        quote: req.body.quote
+                    }
+                },
+                {
+                    upsert: true
+                }
+            ).then(_ => {
+                res.json('Success')
+            })
+            .catch(error => console.error(error))
         })
     })
     .catch(error => console.error(error))

@@ -41,3 +41,4 @@ deleteButton.addEventListener('click', _ => {
         }
     })
 })
+

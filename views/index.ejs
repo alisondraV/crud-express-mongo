@@ -20,14 +20,6 @@
     </form>
 
     <div>
-      <h2>Darth Vadar invades!</h2>
-      <p>
-        Replace first Yoda's quote with a quote written by Darth Vadar
-      </p>
-      <button id="update-button">Replace Yoda's quote</button>
-    </div>
-
-    <div>
       <h2>Remove Darth Vadar!</h2>
       <p>
         Delete one Darth Vadar's quote. Does nothing if there are no more Darth Vadar's quote
@@ -41,9 +33,21 @@
       <ul class="quotes">
         <% for(var i = 0; i < quotes.length; i++) { %>
           <li class="quote">
+            <button id="updateButton">Update</button>
             <span><%= quotes[i].name %></span>:
             <span><%= quotes[i].quote %></span>
           </li>
+<!--          <li class="quote">-->
+<!--            <label>-->
+<!--              Name:-->
+<!--              <input type="text" placeholder="name" name="name" />-->
+<!--            </label>-->
+<!--            <label>-->
+<!--              Quote:-->
+<!--              <input type="text" placeholder="quote" name="quote" />-->
+<!--            </label>-->
+<!--            <button id="save-button">Save</button>-->
+<!--          </li>-->
         <% } %>
       </ul>
     </div>

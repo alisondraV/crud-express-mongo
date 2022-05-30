@@ -7,7 +7,7 @@ app.set('view engine', 'ejs')
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
-async function taco () {
+;(async () => {
     try {
         const client = await MongoClient.connect(process.env.MONGODB_CONNECTION)
         console.log('Connected to Database')
@@ -19,55 +19,59 @@ async function taco () {
 
         app.listen(3000, () => console.log('listening on 3000'))
 
-        app.get('/', (req, res) => {
-            quotesCollection.find().toArray()
-                .then(results => {
-                    res.render('index.ejs', { quotes: results })
-                })
-                .catch(error => console.error(error))
+        app.get('/', async (req, res) => {
+            try {
+                const results = await quotesCollection.find().toArray()
+                res.render('index.ejs', { quotes: results })
+            } catch (error) {
+                console.error('GET' + error)
+            }
         })
 
-        app.post('/quotes', (req, res) => {
-            quotesCollection.insertOne(req.body)
-                .then(result => {
-                    console.log(result)
-                    res.redirect('/')
-                })
-                .catch(error => console.error(error))
+        app.post('/quotes', async (req, res) => {
+            try {
+                const results = await quotesCollection.insertOne(req.body)
+                console.log(results)
+                res.redirect('/')
+            } catch(error) {
+                console.error(error)
+            }
         })
 
-        app.put('/quotes', (req, res) => {
-            quotesCollection.findOneAndUpdate(
-                { name: 'Yoda' },
-                {
-                    $set: {
-                        name: req.body.name,
-                        quote: req.body.quote
+        app.put('/quotes', async (req, res ) => {
+            try {
+                await quotesCollection.findOneAndUpdate(
+                    {name: 'Yoda'},
+                    {
+                        $set: {
+                            name: req.body.name,
+                            quote: req.body.quote
+                        }
+                    },
+                    {
+                        upsert: false
                     }
-                },
-                {
-                    upsert: true
-                }
-            ).then(_ => {
+                )
                 res.json('Success')
-            })
-            .catch(error => console.error(error))
+
+            } catch(error) {
+                console.error(error)
+            }
         })
 
-        app.delete('/quotes', (req, res) => {
-            quotesCollection.deleteOne(
-                { name: req.body.name },
-            ).then(result => {
+        app.delete('/quotes', async (req, res) => {
+            try {
+                const result = await quotesCollection.deleteOne({name: req.body.name});
+
                 if (result.deletedCount === 0) {
                     return res.json('No quote to delete')
                 }
                 res.json(`Deleted Darth Vadar's quote`)
-            }).catch(error => console.error(error))
-
+            } catch (error) {
+                console.error(error)
+            }
         })
     } catch (error) {
-        console.error(error)
+        console.error(`There was a server error: ${error}`)
     }
-}
-
-taco()
+})()

@@ -24,7 +24,7 @@
       <p>
         Delete one Darth Vadar's quote. Does nothing if there are no more Darth Vadar's quote
       </p>
-      <button id="delete-button">Delete Darth Vadar's quote</button>
+<!--      <button id="delete-button">Delete Darth Vadar's quote</button>-->
       <div id="message"></div>
     </div>
 
@@ -33,9 +33,12 @@
       <ul class="quotes">
         <% for(var i = 0; i < quotes.length; i++) { %>
           <li class="quote">
-            <button id="updateButton">Update</button>
-            <span><%= quotes[i].name %></span>:
-            <span><%= quotes[i].quote %></span>
+            <form> <!--incomplete-->
+              <button id="update-button">Update</button>
+              <span><%= quotes[i].name %></span>:
+              <span><%= quotes[i].quote %></span>
+              <button id="delete-button" data-name="<%= quotes[i].name %>">Delete</button>
+            </form>
           </li>
 <!--          <li class="quote">-->
 <!--            <label>-->

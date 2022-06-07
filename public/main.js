@@ -1,6 +1,5 @@
 const updateButton = document.querySelector('#update-button')
-const deleteButton = document.querySelector('#delete-button')
-const messageDiv = document.querySelector('#message')
+const deleteButtons = document.querySelectorAll('.delete-button')
 
 // TODO: make this dynamic
 const data = {
@@ -22,24 +21,16 @@ updateButton.addEventListener('click', _ => {
     })
 })
 
-deleteButton.addEventListener('click', ({target}) => {
-    console.log(target)
+deleteButtons.forEach(button => button.addEventListener('click', ({target}) => {
+    const quoteId = target.closest('quote-model').dataset.id
+
     fetch('/quotes', {
         method: 'delete',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            name: data.name
-        })
+        body: JSON.stringify({ quoteId })
     })
-    .then(res => {
-        if (res.ok) return res.json()
+    .then(() => {
+        window.location.reload()
     })
-    .then(response => {
-        if (response === 'No quote to delete') {
-            messageDiv.textContent = 'No Darth Vadar quote to delete'
-        } else {
-            window.location.reload()
-        }
-    })
-})
+}))
 

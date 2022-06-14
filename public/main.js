@@ -1,36 +1,37 @@
-const updateButton = document.querySelector('#update-button')
-const deleteButtons = document.querySelectorAll('.delete-button')
+const deleteButtons = document.querySelectorAll('.delete-button');
 
-// TODO: make this dynamic
-const data = {
-    name: 'Darth Vadar',
-    quote: 'I find your lack of faith disturbing.'
-}
+deleteButtons.forEach(button => button.addEventListener('click', async _ => {
+    const quoteId = button.closest('quote-model').dataset.id;
 
-updateButton.addEventListener('click', _ => {
-    fetch('/quotes', {
-        method: 'put',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-    })
-    .then(res => {
-        if (res.ok) return res.json()
-    })
-    .then(_ => {
+    try {
+        await fetch('/quotes', {
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ quoteId })
+        })
         window.location.reload();
-    })
-})
-
-deleteButtons.forEach(button => button.addEventListener('click', ({target}) => {
-    const quoteId = target.closest('quote-model').dataset.id
-
-    fetch('/quotes', {
-        method: 'delete',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quoteId })
-    })
-    .then(() => {
-        window.location.reload()
-    })
+    } catch (e) {
+        console.log('Error occurred: ', e.message);
+    }
 }))
 
+function showUpdateForm(button) {
+    const updateForm = button.parentElement.querySelector('.update-form');
+    updateForm.style.display = 'block';
+}
+
+async function updateQuote(button, id) {
+    const name = button.parentElement.querySelector('[name=name]')
+    const quote = button.parentElement.querySelector('[name=quote]')
+
+    try {
+        await fetch(`/quotes/${id}`, {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name: name.value, quote: quote.value}),
+        })
+        window.location.reload();
+    } catch (e) {
+        console.log('Error occurred: ', e.message);
+    }
+}

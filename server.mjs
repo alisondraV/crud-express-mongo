@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 
         app.post('/quotes',  (req, res) => createQuote(req, res, quotesCollection))
 
-        app.put('/quotes', async (req, res ) => updateQuote(req, res, quotesCollection))
+        app.put('/quotes/:id', async (req, res ) => updateQuote(req, res, quotesCollection))
 
         app.delete('/quotes', async (req, res) => deleteQuote(req, res, quotesCollection))
     } catch (error) {

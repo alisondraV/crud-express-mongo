@@ -20,9 +20,13 @@ export async function createQuote(req, res, quotesCollection) {
 }
 
 export async function updateQuote (req, res, quotesCollection) {
+    const id = req.params.id;
+
     try {
         await quotesCollection.findOneAndUpdate(
-            {name: 'Yoda'},
+            {
+                _id: ObjectId(id),
+            },
             {
                 $set: {
                     name: req.body.name,

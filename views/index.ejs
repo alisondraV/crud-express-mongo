@@ -25,23 +25,23 @@
         <% for(var i = 0; i < quotes.length; i++) { %>
           <li class="quote">
             <quote-model data-id="<%= quotes[i]._id %>">
-              <button id="update-button">Update</button>
+              <button class="update-button" onclick="showUpdateForm(this)">Update</button>
               <span><%= quotes[i].name %></span>:
               <span><%= quotes[i].quote %></span>
               <button class="delete-button">Delete</button>
+              <div class="update-form" style="display: none">
+                <label>
+                  Name:
+                  <input type="text" placeholder="name" name="name" value="<%= quotes[i].name %>" />
+                </label>
+                <label>
+                  Quote:
+                  <input type="text" placeholder="quote" name="quote" value="<%= quotes[i].quote %>" />
+                </label>
+                <button onclick="updateQuote(this, '<%= quotes[i]._id %>')">Save</button>
+              </div>
             </quote-model>
           </li>
-<!--          <li class="quote">-->
-<!--            <label>-->
-<!--              Name:-->
-<!--              <input type="text" placeholder="name" name="name" />-->
-<!--            </label>-->
-<!--            <label>-->
-<!--              Quote:-->
-<!--              <input type="text" placeholder="quote" name="quote" />-->
-<!--            </label>-->
-<!--            <button id="save-button">Save</button>-->
-<!--          </li>-->
         <% } %>
       </ul>
     </div>

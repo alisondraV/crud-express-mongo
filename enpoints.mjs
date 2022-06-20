@@ -23,6 +23,7 @@ export async function updateQuote (req, res, quotesCollection) {
     const id = req.params.id;
 
     try {
+        // service.update(req.params.id, req.body)
         await quotesCollection.findOneAndUpdate(
             {
                 _id: ObjectId(id),

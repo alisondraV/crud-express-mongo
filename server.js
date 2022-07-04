@@ -1,6 +1,6 @@
 import express from 'express'
 import { getQuotes, createQuote, updateQuote, deleteQuote } from './enpoints.js'
-import {config} from 'dotenv'
+import { config } from 'dotenv'
 import bodyParser from 'body-parser'
 import { MongoClient } from 'mongodb'
 import { QuotesService } from './QuotesService.js'

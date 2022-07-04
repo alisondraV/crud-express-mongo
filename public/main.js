@@ -1,7 +1,7 @@
-const deleteButtons = document.querySelectorAll('.delete-button');
+const deleteButtons = document.querySelectorAll('.delete-button')
 
 deleteButtons.forEach(button => button.addEventListener('click', async _ => {
-    const quoteId = button.closest('quote-model').dataset.id;
+    const quoteId = button.closest('quote-model').dataset.id
 
     try {
         await fetch('/quotes', {
@@ -9,15 +9,15 @@ deleteButtons.forEach(button => button.addEventListener('click', async _ => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ quoteId })
         })
-        window.location.reload();
+        window.location.reload()
     } catch (e) {
-        console.log('Error occurred: ', e.message);
+        console.log('Error occurred: ', e.message)
     }
 }))
 
 function showUpdateForm(button) {
-    const updateForm = button.parentElement.querySelector('.update-form');
-    updateForm.style.display = 'block';
+    const updateForm = button.parentElement.querySelector('.update-form')
+    updateForm.style.display = 'block'
 }
 
 async function updateQuote(button, id) {
@@ -30,8 +30,8 @@ async function updateQuote(button, id) {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name: name.value, quote: quote.value}),
         })
-        window.location.reload();
+        window.location.reload()
     } catch (e) {
-        console.log('Error occurred: ', e.message);
+        console.log('Error occurred: ', e.message)
     }
 }

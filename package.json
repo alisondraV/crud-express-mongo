@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "CRUD application with express and mongoDB",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon server.mjs"
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

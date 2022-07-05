@@ -3,7 +3,7 @@ import { getQuotes, createQuote, updateQuote, deleteQuote } from './enpoints.js'
 import { config } from 'dotenv'
 import bodyParser from 'body-parser'
 import { MongoClient } from 'mongodb'
-import { QuotesService } from './QuotesService.js'
+import { QuotesService } from './quotesService.js'
 
 config()
 

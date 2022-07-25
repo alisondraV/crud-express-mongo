@@ -10,11 +10,11 @@
     <form action="/quotes" method="POST">
       <label>
         Name:
-        <input type="text" placeholder="name" name="name" />
+        <input type="text" placeholder="name" name="name" data-test="new-name"/>
       </label>
       <label>
         Quote:
-        <input type="text" placeholder="quote" name="quote" />
+        <input type="text" placeholder="quote" name="quote" data-test="new-quote"/>
       </label>
       <button type="submit">Submit</button>
     </form>
@@ -26,8 +26,7 @@
           <li class="quote">
             <quote-model data-id="<%= quotes[i]._id %>">
               <button class="update-button" onclick="showUpdateForm(this)">Update</button>
-              <span><%= quotes[i].name %></span>:
-              <span><%= quotes[i].quote %></span>
+              <span><%= quotes[i].name %>: <%= quotes[i].quote %></span>
               <button class="delete-button">Delete</button>
               <div class="update-form" style="display: none">
                 <label>

@@ -7,9 +7,18 @@ describe('quotes CRUD operations', () => {
     const name = 'Yoda'
     const quote = 'Feed the cat'
 
-    cy.get('[data-test=new-name]').type(`${name}`)
-    cy.get('[data-test=new-quote]').type(`${quote}{enter}`)
+    cy.createQuote(name, quote);
 
     cy.get('li span').last().should('have.text', `${name}: ${quote}`)
+  })
+
+  it('can delete a quote', () => {
+    const name = 'Luke'
+    const quote = 'Go to the store'
+
+    cy.createQuote(name, quote)
+    cy.contains(`${name}: ${quote}`).siblings('.delete-button').click()
+
+    cy.contains(`${name}: ${quote}`).should('not.exist')
   })
 })

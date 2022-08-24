@@ -2,7 +2,8 @@
 // })
 cy.createQuote = function (name, quote) {
     cy.get('[data-test=new-name]').type(`${name}`)
-    cy.get('[data-test=new-quote]').type(`${quote}{enter}`)
+    cy.get('[data-test=new-quote]').type(`${quote}`)
+    cy.get('[data-test=add-quote]').click()
 }
 
 cy.deleteAllQuotes = function () {

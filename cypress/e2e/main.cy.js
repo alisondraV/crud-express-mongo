@@ -3,11 +3,15 @@ describe('quotes CRUD operations', () => {
     cy.visit('http://localhost:3000/')
   })
 
+  afterEach(() => {
+    cy.deleteAllQuotes()
+  })
+
   it('can add a new quote', () => {
     const name = 'Yoda'
     const quote = 'Feed the cat'
 
-    cy.createQuote(name, quote);
+    cy.createQuote(name, quote)
 
     cy.get('li span').last().should('have.text', `${name}: ${quote}`)
   })

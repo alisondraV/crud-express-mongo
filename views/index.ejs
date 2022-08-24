@@ -35,9 +35,9 @@
                 </label>
                 <label>
                   Quote:
-                  <input type="text" placeholder="quote" name="quote" value="<%= quotes[i].quote %>" />
+                  <input data-test="update-quote" type="text" placeholder="quote" name="quote" value="<%= quotes[i].quote %>" />
                 </label>
-                <button onclick="updateQuote(this, '<%= quotes[i]._id %>')">Save</button>
+                <button data-test="save-update" onclick="updateQuote(this, '<%= quotes[i]._id %>')">Save</button>
               </div>
             </quote-model>
           </li>

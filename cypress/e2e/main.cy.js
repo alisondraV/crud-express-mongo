@@ -19,10 +19,24 @@ describe('quotes CRUD operations', () => {
   it('can delete a quote', () => {
     const name = 'Luke'
     const quote = 'Go to the store'
-
     cy.createQuote(name, quote)
+
     cy.contains(`${name}: ${quote}`).siblings('.delete-button').click()
 
     cy.contains(`${name}: ${quote}`).should('not.exist')
+  })
+
+  it('can update a quote', () => {
+    const name = 'Vehikl Dev'
+    const oldQuote = 'Fix the tests'
+    const updatedQuote = 'The tests have been fixed'
+    cy.createQuote(name, oldQuote)
+
+    cy.contains(`${name}: ${oldQuote}`).siblings('.update-button').click()
+    cy.get('[data-test=update-quote]').clear().type(`${updatedQuote}`)
+    cy.get('[data-test=save-update]').click()
+
+    cy.contains(`${name}: ${oldQuote}`).should('not.exist')
+    cy.contains(`${name}: ${updatedQuote}`).should('exist')
   })
 })

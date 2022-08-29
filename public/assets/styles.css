@@ -1,7 +1,22 @@
 h1 {
     font-family: 'Aboreto', cursive;
+    text-align: center;
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
+}
+
+.quotes-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+button {
+    width: 5rem;
+    padding: 5px;
 }

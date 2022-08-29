@@ -1,4 +1,4 @@
-h1 {
+h1, h2 {
     font-family: 'Aboreto', cursive;
     text-align: center;
 }
@@ -7,7 +7,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+button {
+    width: 5rem;
+    padding: 5px;
+}
+
+
 .quotes-form {
+    width: 50%;
+    min-width: 20rem;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +25,9 @@ body {
     padding: 10px;
 }
 
-button {
-    width: 5rem;
-    padding: 5px;
+.quotes-list {
+    width: 60%;
+    min-width: 25rem;
+    margin: auto;
+    text-align: left;
 }

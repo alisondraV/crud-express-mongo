@@ -5,6 +5,8 @@ h1, h2 {
 
 body {
     font-family: 'Open Sans', sans-serif;
+    background-image: radial-gradient(khaki, darkseagreen);
+    min-height: 100vh;
 }
 
 button {

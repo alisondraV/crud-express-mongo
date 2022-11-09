@@ -21,7 +21,7 @@ describe('quotes CRUD operations', () => {
     const quote = 'Go to the store'
     cy.createQuote(name, quote)
 
-    cy.contains(`${name}: ${quote}`).siblings('.delete-button').click()
+    cy.contains(`${name}: ${quote}`).siblings('[data-test=delete-button]').click()
 
     cy.contains(`${name}: ${quote}`).should('not.exist')
   })
@@ -32,7 +32,7 @@ describe('quotes CRUD operations', () => {
     const updatedQuote = 'The tests have been fixed'
     cy.createQuote(name, oldQuote)
 
-    cy.contains(`${name}: ${oldQuote}`).siblings('.update-button').click()
+    cy.contains(`${name}: ${oldQuote}`).siblings('[data-test=update-button]').click()
     cy.get('[data-test=update-quote]').clear().type(`${updatedQuote}`)
     cy.get('[data-test=save-update]').click()
 

@@ -1,4 +1,4 @@
-const deleteButtons = document.querySelectorAll('.delete-button')
+const deleteButtons = document.querySelectorAll('[data-test=delete-button]')
 
 deleteButtons.forEach(button => button.addEventListener('click', async _ => {
     const quoteId = button.closest('quote-model').dataset.id

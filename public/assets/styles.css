@@ -10,13 +10,18 @@ body {
 }
 
 button {
-    width: 5rem;
-    padding: 5px;
-    margin: 5px 0;
+    border:none;
+    background-color: transparent;
 }
 
 input {
     margin: 5px 0;
+}
+
+.quote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .quotes-form {

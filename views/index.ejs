@@ -32,9 +32,15 @@
         <% for(var i = 0; i < quotes.length; i++) { %>
           <li class="quote">
             <quote-model data-id="<%= quotes[i]._id %>">
-              <button class="update-button" onclick="showUpdateForm(this)">Update</button>
-              <span><%= quotes[i].name %>: <%= quotes[i].quote %></span>
-              <button class="delete-button">Delete</button>
+              <div class="quote">
+                <button data-test="update-button" onclick="showUpdateForm(this)">
+                  <img src="/assets/images/edit.png" alt="Edit quote" width="30px">
+                </button>
+                <span><%= quotes[i].name %>: <%= quotes[i].quote %></span>
+                <button data-test="delete-button">
+                  <img src="/assets/images/delete.png" alt="Delete quote" width="30px">
+                </button>
+              </div>
               <div class="update-form" style="display: none">
                 <label>
                   Name:

@@ -33,11 +33,11 @@
           <li class="quote">
             <quote-model data-id="<%= quotes[i]._id %>">
               <div class="quote">
-                <button data-test="update-button" onclick="showUpdateForm(this)">
+                <button data-test="update-button" class="icon-button" onclick="showUpdateForm(this)">
                   <img src="/assets/images/edit.png" alt="Edit quote" width="30px">
                 </button>
                 <span><%= quotes[i].name %>: <%= quotes[i].quote %></span>
-                <button data-test="delete-button">
+                <button data-test="delete-button" class="icon-button">
                   <img src="/assets/images/delete.png" alt="Delete quote" width="30px">
                 </button>
               </div>

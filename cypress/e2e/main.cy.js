@@ -33,6 +33,7 @@ describe('quotes CRUD operations', () => {
     cy.createQuote(name, oldQuote)
 
     cy.contains(`${name}: ${oldQuote}`).siblings('[data-test=update-button]').click()
+    //todo: fix test, investigate why the selector can not find the text box
     cy.get('[data-test=update-quote]').clear().type(`${updatedQuote}`)
     cy.get('[data-test=save-update]').click()
 

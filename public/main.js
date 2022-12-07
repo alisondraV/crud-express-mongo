@@ -16,7 +16,7 @@ deleteButtons.forEach(button => button.addEventListener('click', async _ => {
 }))
 
 function showUpdateForm(button) {
-    const updateForm = button.parentElement.querySelector('.update-form')
+    const updateForm = button.parentElement.parentElement.querySelector('.update-form')
     updateForm.style.display = 'block'
 }
 
